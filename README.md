@@ -74,6 +74,23 @@ docker run --rm -v "$PWD/data:/app/data" notes-cli --cmd=list
 4. Проверка сохранения данных
 cat ./data/notes.csv
 
+1. Сначала соберем образ.
+docker build -t notes-cli .
+
+ 2. Добавим заметку через Docker
+docker run --rm -v "$PWD/data:/app/data" notes-cli --cmd=add --text="Заметка из Docker"
+
+3. Посмотрим список через Docker
+docker run --rm -v "$PWD/data:/app/data" notes-cli --cmd=list
+
+4. Удалим заметку (например, ID=1)
+docker run --rm -v "$PWD/data:/app/data" notes-cli --cmd=rm --id=1
+
+5. Проверим список после удаления
+docker run --rm -v "$PWD/data:/app/data" notes-cli --cmd=list
+
+
+
 Процесс разработки
 
 Проект разработан с использованием Git Flow:
